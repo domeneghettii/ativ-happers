@@ -1,0 +1,16 @@
+{
+  "name": "ativ-happers",
+  "version": "1.0.0",
+  "description": "Realização da atividade happers back-end",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SENAI",
+    "Node.JS",
+    "Javascript"
+  ],
+  "author": "Luana Domeneghetti Dev",
+  "license": "MIT"
+}
