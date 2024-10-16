@@ -81,4 +81,32 @@ suspeitosRoutes.get("/:id", (req, res) => {
 
     return res.status(200).send(suspeito)
 });
+
+//Rota para editar um suspeito
+suspeitosRoutes.put("/:id", (req, res) => {
+    const { id } = req.params
+
+    const suspeito = suspeitos.find((suspect) => suspect.id === Number(id)
+    );
+
+    if (!suspeito) {
+        return res.status(404).send({ message: "Suspeito ainda não encontrado!" });
+    }
+
+    const { nome, idade, envolvimento, descricaoFisica } = req.body
+
+    if(!nome || !idade || !envolvimento){
+        return res.status(400).send({ message: "Preencha todos os campos!" });
+    }
+
+    suspeito.nome = nome
+    suspeito.idade = idade
+    suspeito.envolvimento = envolvimento
+    suspeito.descricaoFisica = descricaoFisica
+
+    return res.status(200).send({
+        message: "Suspeito atualizado!",
+        suspeito,
+    })
+});
 export default suspeitosRoutes;
