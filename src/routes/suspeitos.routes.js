@@ -40,22 +40,18 @@ suspeitosRoutes.post("/", (req, res) => {
         descricaoFisica
     } = req.body;
 
-
     //Validação se a idade é um número inteiro
     if(! Number.isInteger(idade)) {
-        return res.status(400).send({ message: "Insira agora uma idade válida!" });
+        return res.status(400).send({ message: "Insira uma idade válida!" });
     }
-
     //Validação se a pessoa inseriu um nome
-    if(!nome || !idade || !envolvimento) {
+    if(!nome, !idade, !envolvimento) {
         return res.status(400).send({ message: "Insira um nome!" });
     }
-
     //Validação do sim ou não no envolvimento
     if(envolvimento != "sim" && envolvimento != "não") {
         return res.status(400).send({ message: "Digite 'sim' ou 'não'!" });
     }
-
     const novoSuspeito = {
         id: Number(Math.floor(Math.random() * 999999) + 1),
         nome,
@@ -65,21 +61,6 @@ suspeitosRoutes.post("/", (req, res) => {
     };
     suspeitos.push(novoSuspeito);
     return res.status(201).send({ message: "Suspeito cadastrado!", novoSuspeito} );
-});
-
-// Rota para buscar uma pessoa específica do array suspeitos
-suspeitosRoutes.get("/:id", (req, res) => {
-    const { id } = req.params
-
-    const suspeito = suspeitos.find((suspect) =>
-        suspect.id === Number(id)
-    );
-
-    if (!suspeito) {
-        return res.status(404).send({ message: "Suspeito não encontrado!" })
-    };
-
-    return res.status(200).send(suspeito)
 });
 
 //Rota para editar um suspeito
@@ -96,7 +77,7 @@ suspeitosRoutes.put("/:id", (req, res) => {
     const { nome, idade, envolvimento, descricaoFisica } = req.body
 
     if(!nome || !idade || !envolvimento){
-        return res.status(400).send({ message: "Preencha todos os campos!" });
+        return res.status(400).send({ message: "Completar todos os campos!" });
     }
 
     suspeito.nome = nome
@@ -105,8 +86,9 @@ suspeitosRoutes.put("/:id", (req, res) => {
     suspeito.descricaoFisica = descricaoFisica
 
     return res.status(200).send({
-        message: "Suspeito atualizado!",
+        message: "Suspeito renovado!",
         suspeito,
     })
 });
+
 export default suspeitosRoutes;
