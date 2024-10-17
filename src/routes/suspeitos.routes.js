@@ -98,7 +98,7 @@ suspeitosRoutes.delete("/:id", (req, res) => {
     const suspeito = suspeitos.find((suspect) => suspect.id === Number(id))
     
     if (!suspeito) {
-        return res.status(404).send({ message: "Suspeito não encontrado!" })
+        return res.status(404).send({ message: "Suspeito ainda não encontrado!" })
     };
 
     suspeitos = suspeitos.filter((suspect) => suspect.id !== Number(id))
